@@ -12,7 +12,7 @@ public class ThrowClass {
     }
 
     public static void main(String [] args){
-        catchIt("hello");
+        catchIt("test");
     }
 }
 
