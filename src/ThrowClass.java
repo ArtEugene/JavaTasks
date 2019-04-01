@@ -13,7 +13,6 @@ public class ThrowClass {
 
     public static void main(String [] args){
         catchIt("hello");
-        System.out.println(Double.NaN);
     }
 }
 
