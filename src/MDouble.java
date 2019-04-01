@@ -24,14 +24,15 @@ public class MDouble{
     }
 
     public static void main(String[] args) {
-        int randSize = new Random().nextInt(10) + 1;
+        Random rand = new Random();
+        int randSize = rand.nextInt(10) + 1;
         MDouble [] X = new MDouble[randSize];
         MDouble [] Y = new MDouble[randSize];
         MDouble [] Z = new MDouble[randSize];
 
         for (int i = 0 ; i < randSize ; i++){
-            X[i] = new MDouble(new Random().nextDouble() * 100);
-            Y[i] = new MDouble(new Random().nextDouble() * 100);
+            X[i] = new MDouble(rand.nextDouble() * 100);
+            Y[i] = new MDouble(rand.nextDouble() * 100);
             Z[i] = new MDouble(X[i].getValue() / Y[i].getValue());
         }
 
