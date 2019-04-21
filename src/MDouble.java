@@ -5,15 +5,28 @@ public class MDouble{
     private Double value;
 
     public MDouble(Double value){
-        if (value.isInfinite()){
-            this.value = 99999d;
-        } else if (value.isNaN()){
-            this.value = 0d;
-        } else {
-            this.value = value;
+       setValue(value);
+    }
+    
+    public void setValue(Double value){
+        try {
+            if (value.isInfinite ()) {
+                throw new WhiteException ("infinite");
+            } else if (value.isNaN ()) {
+                throw new WhiteException ("NaN");
+            } else {
+                this.value = value;
+            }
+        } catch (WhiteException wexc){
+            System.err.println ("Exception caught by " + wexc.getMessage () + " value");
+            switch (wexc.getMessage ()){
+                case "NaN" : this.value = 0d; break;
+                case "infinite": this.value = 99999.9; break;
+                default: //throw new WhiteException ("Error!");
+            }
         }
     }
-
+    
     public Double getValue() {
         return value;
     }
@@ -24,8 +37,11 @@ public class MDouble{
     }
 
     public static void main(String[] args) {
-        Random rand = new Random();
-        int randSize = rand.nextInt(10) + 1;
+        System.out.println("[LOG] Create new MDouble object with POSITIVE_INFINITY");
+        MDouble test = new MDouble (Double.POSITIVE_INFINITY);
+        System.out.println("[LOG] Value of MDouble object is : " + test.getValue () + "\n");
+
+        int randSize = new Random().nextInt(10) + 1;
         MDouble [] X = new MDouble[randSize];
         MDouble [] Y = new MDouble[randSize];
         MDouble [] Z = new MDouble[randSize];
