@@ -1,0 +1,74 @@
+import java.io.*;
+import java.util.*;
+
+public class ReaderHTML {
+    private static void consoleLog(String mainAction, String before, String after){
+        String logMsg = "[LOG] " + mainAction;
+        if (!before.isEmpty()){
+            logMsg += "\n\tBefore: " + before;
+        }
+
+        if (!after.isEmpty()){
+            logMsg = "\tAfter: " + after;
+        }
+
+        System.out.println(logMsg);
+    }
+
+    public static void main(String[] args) {
+
+        StringBuilder htmlBuilder = new StringBuilder();
+
+        System.out.println("Enter the path to HTML file or the HTML string: ");
+        System.out.println("Examples:\n\tpath entering (path:path/to/your/doc.html);\n\tstring entering (string:<your><HTML>string);");
+
+        String pathOrString = new Scanner(System.in).nextLine();
+        if (pathOrString.toLowerCase().startsWith("string")){
+            htmlBuilder = new StringBuilder(pathOrString.substring(7));
+        } else if (pathOrString.toLowerCase().startsWith("path")){
+            try {
+                String path = pathOrString.substring(5);
+                consoleLog("Read file with path: " + path,"","");
+                BufferedReader reader = new BufferedReader(new FileReader(path));
+
+                String tmpStr;
+                while ((tmpStr = reader.readLine()) != null) {
+                    htmlBuilder.append(tmpStr);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            new Exception("[x] Error [x]\nPlease use keywords ['path:' or 'string:']").printStackTrace();
+            System.exit(404);
+        }
+
+        String HTML = htmlBuilder.toString();
+
+        consoleLog("Delete all HTML tags from document", HTML, "");
+        HTML = HTML.replaceAll("<[^<>]*>","");
+        consoleLog("","",HTML);
+
+        consoleLog("Replace all separators ( ' '(spaces), ',', ';') to one space", HTML,"");
+        HTML = HTML
+                .replaceAll("(,|\\.|;)"," ")
+                .replaceAll("\\s+"," ")
+                .trim();
+        consoleLog("","", HTML);
+
+        consoleLog("Delete all repeating words", HTML,"");
+        Set<String> words = new HashSet<>(
+                            Arrays.asList(
+                                HTML.toLowerCase()
+                                .replaceAll("(,|\\.|;)"," ")
+                                .replaceAll("\\s+"," ")
+                                .split(" ")
+                            )
+                        );
+        List<String> wordsList = new ArrayList<>(words);
+        consoleLog("", "",wordsList.toString());
+        consoleLog("Sort list", wordsList.toString(),"");
+        wordsList.sort(String.CASE_INSENSITIVE_ORDER);
+        consoleLog("","", wordsList.toString());
+    }
+}
