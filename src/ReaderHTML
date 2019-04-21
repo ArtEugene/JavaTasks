@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.*;
-
+/*
+    При решении задач использовать класс String, StringBuffer, коллекции, настраиваемые коллекции, регулярные выражения. 
+    Дан HTML документ. Требуется удалить из него все HTML тэги. Получив чистый текст. Полученный текст разбить на слова. Удалить из списка слов все повторения. Отсортировать слова по алфавиту и вывести на экран.
+*/
 public class ReaderHTML {
     private static void consoleLog(String mainAction, String before, String after){
         String logMsg = "[LOG] " + mainAction;
