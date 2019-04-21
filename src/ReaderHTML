@@ -39,7 +39,7 @@ public class ReaderHTML {
                 e.printStackTrace();
             }
         } else {
-            new Exception("[x] Error [x]\nPlease use keywords ['path:' or 'string:']").printStackTrace();
+            new Exception("[x] Error [x]\n\tPlease use keywords ['path:' or 'string:']").printStackTrace();
             System.exit(404);
         }
 
