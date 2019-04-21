@@ -40,8 +40,9 @@ public class MDouble{
         System.out.println("[LOG] Create new MDouble object with POSITIVE_INFINITY");
         MDouble test = new MDouble (Double.POSITIVE_INFINITY);
         System.out.println("[LOG] Value of MDouble object is : " + test.getValue () + "\n");
-
-        int randSize = new Random().nextInt(10) + 1;
+        
+        Random rand = new Random();
+        int randSize = rand.nextInt(10) + 1;
         MDouble [] X = new MDouble[randSize];
         MDouble [] Y = new MDouble[randSize];
         MDouble [] Z = new MDouble[randSize];
